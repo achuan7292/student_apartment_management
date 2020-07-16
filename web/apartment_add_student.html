@@ -1,0 +1,132 @@
+<!-- layui引入层 添加学生的表单-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>宿舍管理系统</title>
+    <!-- 引入layui -->
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
+    <!-- 引入弹出层组件 -->
+
+    <link rel="stylesheet" type="text/css" href="css/modules/layer/default/layer.css">
+    <style type="text/css">
+        form {
+            margin: 40px auto;
+        }
+
+        .layui-input-block {
+            padding-right: 40px;
+        }
+
+        .mystyle {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+<form method="post" class="layui-form" id="app">
+    <div class="layui-form-item">
+        <label class="layui-form-label">学号</label>
+        <div class="layui-input-block">
+            <input type="number" v-model="sid" name="title" required lay-verify="required" placeholder="请输入学号"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" v-model="sname" name="title" required lay-verify="required" placeholder="请输入姓名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">学院</label>
+        <div class="layui-input-block">
+            <input type="text" v-model="coll" name="title" required lay-verify="required" placeholder="请输入姓名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">专业</label>
+        <div class="layui-input-block">
+            <input type="text" v-model="major" name="title" required lay-verify="required" placeholder="请输入姓名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">班级</label>
+        <div class="layui-input-block">
+            <input type="number" v-model="sclass" name="title" required lay-verify="required" placeholder="请输入姓名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">单选框</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" value="0" title="男">
+            <input type="radio" name="sex" value="1" title="女" checked>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block mystyle">
+            <button class="layui-btn" type="button" @click="addStudent" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script src="js/jquery.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/laydate.js"></script>
+<script src="js/layer.js"></script>
+<script src="js/layui.all.js"></script>
+<script src="js/vue.js"></script>
+<script>
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            sid: '',
+            sname: '',
+            sex: 0,
+            coll: '',
+            major: '',
+            sclass: 0
+        },
+        methods: {
+            addStudent: function () {
+                layer.msg('正在添加');
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/add_student.do',
+                    params: {
+                        sid: this.sid,
+                        sname: this.sname,
+                        sex: this.sex,
+                        coll: this.coll,
+                        major: this.major,
+                        sclass: this.sclass
+                    }
+                }).then(function (response) {
+                    if (response.data.success) {
+                        layer.msg('添加成功');
+                    } else {
+                        layer.msg('添加失败');
+                    }
+
+
+                }).catch(function (err) {
+                    layer.msg('服务器错误')
+                })
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>

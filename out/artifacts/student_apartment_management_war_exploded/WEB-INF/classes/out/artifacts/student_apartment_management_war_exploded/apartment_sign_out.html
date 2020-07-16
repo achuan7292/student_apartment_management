@@ -1,0 +1,238 @@
+<!-- 登出界面 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>宿舍管理系统</title>
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/modules/layer/default/layer.css">
+    <link rel="stylesheet" type="text/css" href="css/modules/laydate/default/laydate.css">
+
+    <style type="text/css">
+        #form1 {
+            margin: 40px auto;
+        }
+
+        .layui-input-block {
+            padding-right: 40px;
+        }
+
+        .mystyle {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+
+        }
+
+        .body_title {
+            color: pink;
+            display: inline;
+            font-size: 20px;
+        }
+
+        .layui-icon {
+            font-size: 20px;
+            margin-right: 3px;
+
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">宿舍管理系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+
+            <form method="post" class="layui-form" action="">
+                <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
+                       class="layui-input layui-input-ithou">
+                <span class="layui-icon layui-icon-search layui-icon-ithou"></span>
+            </form>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="img/1003295.jpg" class="layui-nav-img">
+                    漩涡鸣人
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree " lay-filter="test">
+                <li class="layui-nav-item ">
+                    <a class="" href="javascript:;">寝室分配</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_all.html">所有寝室</a></dd>
+                        <dd><a href="apartment_assignment.html">寝室分配</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">学生管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_student_all.html">添加学生</a></dd>
+                        <dd><a href="apartment_student_all.html">操作学生</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="apartment_student_searsh.html">信息查询</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">财产管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_assets.html">财产情况</a></dd>
+                        <dd><a href="javascript:;">财产操作</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed  layui-this">
+                    <a href="javascript:;">出入登记</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_sign_in.html">登入</a></dd>
+                        <dd><a href="apartment_sign_out.html">登出</a></dd>
+                    </dl>
+
+                </li>
+                <li class="layui-nav-item">
+                    <a href="">系统管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">参数设置</a></dd>
+                        <dd><a href="apartment_grant_power.html">权限管理</a></dd>
+                    </dl>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding:3px 5px;">
+            <!-- 主体水平导航 -->
+            <span class="layui-icon layui-icon-release"></span>
+            <h3 class="body_title">出入登记&nbsp;|&nbsp;登出</h3>
+            <form action="" method="post" accept-charset="utf-8" class="layui-form" id="form1">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学号</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="title" required lay-verify="required" placeholder="请输入学号"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入姓名"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学院</label>
+                    <div class="layui-input-block">
+                        <select name="city" lay-verify="required">
+                            <option value=""></option>
+                            <option value="0">软件学院</option>
+                            <option value="1">计算机学院</option>
+                            <option value="2">数学学院</option>
+                            <option value="3">马克思学院</option>
+                            <option value="4">体育学院</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">公寓</label>
+                    <div class="layui-input-block">
+                        <select name="city" lay-verify="required">
+                            <option value=""></option>
+                            <option value="0">一号公寓</option>
+                            <option value="1">二号公寓</option>
+                            <option value="2">三号公寓</option>
+                            <option value="3">四号公寓</option>
+                            <option value="4">五号公寓</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">楼层</label>
+                    <div class="layui-input-block">
+                        <select name="city" lay-verify="required">
+                            <option value=""></option>
+                            <option value="0">一层</option>
+                            <option value="1">二层</option>
+                            <option value="2">三层</option>
+                            <option value="3">四层</option>
+                            <option value="4">五层</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">宿舍</label>
+                    <div class="layui-input-block">
+                        <input type="number" name="title" required lay-verify="required" placeholder="请输入宿舍号"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">登出日期</label>
+                    <div class="layui-input-block">
+                        <input type="date" name="title" required lay-verify="required" class="layui-input" id="test1">
+
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">单选框</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="sex" value="男" title="男">
+                        <input type="radio" name="sex" value="女" title="女" checked>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block mystyle">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+
+            </form>
+
+
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/laydate.js"></script>
+<script src="js/layer.js"></script>
+<script src="js/layui.all.js"></script>
+
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+</script>
+<script>
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+</script>
+</body>
+</html>
+      

@@ -1,0 +1,410 @@
+<!-- 所有寝室界面 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>宿舍管理系统</title>
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/student_search.css">
+    <style>
+        body {
+            background-color: #F2F2F2;
+        }
+
+        .nav-bread {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">宿舍管理系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+
+            <form method="post" class="layui-form" action="">
+                <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
+                       class="layui-input layui-input-ithou">
+                <span class="layui-icon layui-icon-search layui-icon-ithou"></span>
+            </form>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="img/1003295.jpg" class="layui-nav-img">
+                    漩涡鸣人
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree " lay-filter="test">
+                <li class="layui-nav-item ">
+                    <a class="" href="javascript:;">寝室分配</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_all.html">所有寝室</a></dd>
+                        <dd><a href="apartment_assignment.html">寝室分配</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">学生管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_student_all.html">添加学生</a></dd>
+                        <dd><a href="apartment_student_all.html">操作学生</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed  layui-this">
+                    <a href="apartment_student_searsh.html">信息查询</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">财产管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_assets.html">财产情况</a></dd>
+                        <dd><a href="javascript:;">财产操作</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">出入登记</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_sign_in.html">登入</a></dd>
+                        <dd><a href="apartment_sign_out.html">登出</a></dd>
+                    </dl>
+
+                </li>
+                <li class="layui-nav-item">
+                    <a href="">系统管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">参数设置</a></dd>
+                        <dd><a href="apartment_grant_power.html">权限管理</a></dd>
+                    </dl>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding:3px 5px;">
+            <!-- 主体水平导航 -->
+            <form class="layui-form" method="" action="">
+                <div class="layui-container layui-container-ithou" style="margin-left: 0;">
+                    <div class="layui-row  layui-col-space12">
+                        <!-- 比较严谨，不写row会默认将后面元素追加，比bootstrap严谨 -->
+                        <div class="layui-col-md5">
+                            <input type="number" name="title" required lay-verify="required" placeholder="请输入学号"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-col-md5">
+                            <input type="text" name="title" required lay-verify="required" placeholder="请输入姓名"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-col-md2">
+                            <button type="button" class="layui-btn layui-btn-warm">搜索宿舍</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </form>
+            <!-- 面包屑 -->
+            <div style="margin:7px 20px;" class="nav-bread">
+        <span class="layui-breadcrumb" lay-separator="|">
+          <a href="">1号公寓</a>
+          <a href="">2层</a>
+          <a href="">223宿舍</a>
+        </span>
+            </div>
+            <!-- 所有宿舍 18个 -->
+            <div class="layui-fluid" style="margin-left: 70px;">
+                <div class="layui-card layui-col-md3 layui-col-xs-12">
+                    <div class="layui-card-header">学生信息</div>
+                    <div class="layui-card-body">
+                        <ul class="layui-timeline">
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">所在学院</h3>
+                                    <p>
+                                        <i class="layui-icon layui-icon-tree"></i>
+                                        &nbsp;&nbsp;软件学院
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">所处专业</h3>
+                                    <p>
+                                        <i class="layui-icon layui-icon-read"></i>
+                                        &nbsp;&nbsp;软件工程
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">所在公寓</h3>
+                                    <p>
+                                        <i class="layui-icon layui-icon-home"></i>
+                                        &nbsp;&nbsp;1号公寓
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">所在楼层</h3>
+                                    <p>
+                                        <i class="layui-icon layui-icon-home"></i>
+                                        &nbsp;&nbsp;1层
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">宿舍</h3>
+                                    <p>
+                                        <i class="layui-icon layui-icon-home"></i>
+                                        &nbsp;&nbsp;223宿舍
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <div class="layui-timeline-title">End</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="layui-card layui-col-md3 layui-col-xs-12 layui-col-md-offset1">
+                    <div class="layui-card-header">登出记录</div>
+                    <div class="layui-card-body">
+                        <ul class="layui-timeline">
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登出
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登出
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登出
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登出
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登出
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登出
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登出
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登出
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登出
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <div class="layui-timeline-title">过去</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="layui-card layui-col-md3 layui-col-xs-12 layui-col-md-offset1">
+                    <div class="layui-card-header">登入记录</div>
+                    <div class="layui-card-body">
+                        <ul class="layui-timeline">
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登入
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登入
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登入
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登入
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登入
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登入
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登入
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登入
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">12月30日</h3>
+                                    <p>
+                                        登入
+                                    </p>
+                                </div>
+                            </li>
+
+
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <div class="layui-timeline-title">过去</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+<script src="js/layui.all.js"></script>
+
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>
+      

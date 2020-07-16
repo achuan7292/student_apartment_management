@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.admin.dao.StudentDao">
+
+    <select id="selectAllStudent" resultType="Student">
+        select * from student where  checkInDate is null
+    </select>
+
+    <select id="selectAssiedStudent" resultType="Student">
+        SELECT	s.*,d.`buildingNum`,d.`hostelNo`,d.`layerNum` FROM dormitory d LEFT JOIN student s ON s.`sid` = d.`sid`;
+    </select>
+
+    <insert id="addStudent">
+		insert into student (sid,sname,sex,coll,major,sclass) values(#{sid},#{sname},#{sex},#{coll},#{major},#{sclass})
+	</insert>
+
+    <insert id="addDor">
+        insert into dormitory values(#{buildingNum},#{layerNum},#{hostelNo},#{sid})
+    </insert>
+
+    <update id="editStudent">
+		update  dormitory set buildingNum=#{buildingNum},layerNum=#{layerNum},hostelNo=#{hostelNo} where sid = #{sid}
+	</update>
+
+    <update id="updateDate">
+        update student set checkInDate = CURRENT_TIME where sid = #{sid}
+    </update>
+    <delete id="deleteStudent" parameterType="Integer">
+        delete  from student where  sid = #{sid}
+    </delete>
+
+    <delete id="deleteDor" parameterType="Integer">
+        delete  from dormitory where sid = #{sid}
+    </delete>
+
+    <select id="selectStudent" resultType="Student">
+        SELECT	s.*,d.`buildingNum`,d.`hostelNo`,d.`layerNum` FROM dormitory d LEFT JOIN student s ON s.`sid` = d.`sid` where s.sid=#{sid};
+    </select>
+
+    <select id="selectEvery" resultType="Student">
+        SELECT	* from student where sid=#{sid};
+    </select>
+</mapper>

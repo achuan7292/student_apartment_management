@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.admin.dao.AccessDao">
+
+    <select id="selAccessRecords" resultType="Access" parameterType="Access">
+      select  student.sid, student.sname, student.sex, student.coll,major, access_records.buildingNum,
+        access_records.layerNum,access_records.hostelNo, time1, behavior  from access_records,student where student.sid = #{sid} and student.sname = #{sname}
+    </select>
+
+    <insert id="addAccessRecord">
+
+        insert into access_records (sid,name,sex,coll,buildingNum,layerNum,hostelNo,time1,behavior) values
+                                    (#{sid},#{sname},#{sex},#{coll},#{buildingNum},#{layerNum},#{hostelNo},CURRENT_TIME,#{behavior})
+    </insert>
+</mapper>

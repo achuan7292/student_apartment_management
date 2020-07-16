@@ -1,0 +1,29 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 1000,
+  "data": [
+    {
+      "id": 2017006651,
+      "username": "侯智川",
+      "sex": "男",
+      "college": "软件学院",
+      "major": "软件工程",
+      "apartmentId": 1,
+      "floorId": 2,
+      "dormitoryId": 223,
+      "joinDate": "2017-09-01"
+    },
+    {
+      "id": 2017006651,
+      "username": "侯智川",
+      "sex": "男",
+      "college": "软件学院",
+      "major": "软件工程",
+      "apartmentId": 1,
+      "floorId": 2,
+      "dormitoryId": 223,
+      "joinDate": "2017-09-01"
+    }
+  ]
+}

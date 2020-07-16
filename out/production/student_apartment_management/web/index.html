@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>学生公寓管理系统</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css"/>
+    </noscript>
+    <link rel="stylesheet" type="text/css" href="css/modules/layer/default/layer.css">
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <span class="icon fa-building"></span>
+        </div>
+        <div class="content">
+            <div class="inner">
+                <h1>学生公寓管理系统</h1>
+                <p>学生宿舍和公寓是学生日常生活与学习的重要场所，是对学生进行思想政治工作和素质教育的重要阵地。</br>
+                    学生住宿管理事关学生人身安全和财产安全，关系到学校正常的教学、生活秩序，</br>关系到学校和社会的稳定，也关系到我国高等教育的改革和发展。</p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#intro">简介</a></li>
+                <li><a href="#work">工作概况</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#contact">登录</a></li>
+                <!--<li><a href="#elements">Elements</a></li>-->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <div id="main">
+
+        <!-- 简介 -->
+        <article id="intro">
+            <h2 class="major">简介</h2>
+            <span class="image main"><img src="img/pic01.jpg" alt=""/></span>
+            <p>大学生宿舍管理服务委员会是参与学校管理的重要学生组织，隶属于学生处宿舍管理办公室，并在其领导下开展各项管理与服务工作。</p>
+            <p>下设共25个楼宇管理部（简称楼管部），负责各学生宿舍日常学习与生活秩序的管理工作</p>
+        </article>
+
+        <!-- 工作概况-->
+        <article id="work">
+            <h2 class="major">工作概况</h2>
+            <span class="image main"><img src="img/pic02.jpg" alt=""/></span>
+            <p>1.负责管理宿舍卫生、纪律、文化建设、文明宿舍评比、宿舍安排调整、家具管理，协调住宿资源日常维修工作安全、消防工作领导交办的其他工作
+                </br>2.安全检查制度。主要根据《学生须知》中的《学生宿舍防火与用电安全管理规定》会同联检一起对学生宿舍安全隐患进行排查,发现使用违章电器现象及时通报批评。
+                </br>3.通报管理制度。学生处宿管办每月向学校发布通报其内容主要包括：学生宿舍违纪情况（依据宿管会宿舍生活秩序检查结果）；第三方或宿管会卫生检查情况。
+                </br>4.评优管理制度。学生处宿管办和宿管会每学年定期组织评选“优秀文明寝室”，指导二级学院评选“文明寝室”的工作。
+                </br>5.周联检制度。周联检制度根据学生处宿管办工作部署，定期对各二级学院学生寝室纪律和卫生进行检查，分为早检、联检、晚检。
+
+            </p>
+        </article>
+
+        <!-- 关于 -->
+        <article id="about">
+            <h2 class="major">关于</h2>
+            <span class="image main"><img src="img/pic03.jpg" alt=""/></span>
+            <p>
+                学生工作部（处）学生公寓管理服务中心（简称公寓中心）与各公寓楼管理办公室、专职管理人员以“管理育人、服务育人、文化育人”为工作宗旨，为学生创造良好、文明的学习、生活和休息环境，切实提高广大同学的生活质量，营造良好的文化氛围，促使学生养成良好的生活习惯，提高自身综合素质。全面负责学生公寓的日常教育管理工作与建立、健全各项学生公寓管理规章制度，及时修订和完善</p>
+        </article>
+
+        <!-- 登录 -->
+        <article id="contact">
+            <h2 class="major">登录</h2>
+            <form method="post" action="#" id="app">
+                <div class="fields">
+                    <div class="field half">
+                        <label for="用户名">用户名</label>
+                        <input type="text" v-model="username" name="用户名" placeholder="请输入您的用户名" id="用户名"/>
+                    </div>
+                    <div class="field half">
+                        <label for="密码">密码</label>
+                        <input type="password" v-model="password" placeholder="请输入您的密码" name="密码" id="密码"/>
+                    </div>
+                </div>
+                <ul class="actions">
+                    <li><input type="button" value="登录" @click="login"/></li>
+
+                </ul>
+            </form>
+        </article>
+
+        <!-- Elements -->
+        <article id="elements">
+            <h2 class="major">Elements</h2>
+
+            <section>
+                <h3 class="major">Text</h3>
+                <p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+                    This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+                    This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this
+                        is a link</a>.</p>
+                <hr/>
+                <h2>Heading Level 2</h2>
+                <h3>Heading Level 3</h3>
+                <h4>Heading Level 4</h4>
+                <h5>Heading Level 5</h5>
+                <h6>Heading Level 6</h6>
+                <hr/>
+                <h4>Blockquote</h4>
+                <blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus
+                    euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis
+                    volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor
+                    sit amet nullam adipiscing eu felis.
+                </blockquote>
+                <h4>Preformatted</h4>
+                <pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+    print 'Iteration ' + i;
+    deck.shuffle();
+    i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+            </section>
+
+            <section>
+
+            </section>
+
+
+            <section>
+                <h3 class="major">Form</h3>
+                <form method="post" action="#">
+                    <div class="fields">
+                        <div class="field half">
+                            <label for="demo-name">用户名</label>
+                            <input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe"/>
+                        </div>
+                        <div class="field half">
+                            <label for="demo-email">密码</label>
+                            <input type="password" name="demo-passwword" id="demo-email" value=""
+                                   placeholder="jane@abc.com"/>
+                        </div>
+
+                        <div class="field half">
+                            <input type="radio" id="demo-priority-low" name="demo-priority" checked>
+                            <label for="demo-priority-low">Low</label>
+                        </div>
+                        <div class="field half">
+                            <input type="radio" id="demo-priority-high" name="demo-priority">
+                            <label for="demo-priority-high">High</label>
+                        </div>
+                        <div class="field half">
+                            <input type="checkbox" id="demo-copy" name="demo-copy">
+                            <label for="demo-copy">Email me a copy</label>
+                        </div>
+                        <div class="field half">
+                            <input type="checkbox" id="demo-human" name="demo-human" checked>
+                            <label for="demo-human">Not a robot</label>
+                        </div>
+
+                    </div>
+                    <ul class="actions">
+                        <li><input type="button" value="登录" class="primary"/></li>
+
+                    </ul>
+                </form>
+            </section>
+
+        </article>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <p class="copyright">&copy; 太原理工大学软件学院</p>
+    </footer>
+
+</div>
+
+<!-- BG -->
+<div id="bg"></div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/layui.js"></script>
+<script src="js/layer.js"></script>
+<script src="js/vue.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            username: '',
+            password: ''
+
+        },
+        methods: {
+            login: function () {
+                layer.msg('请稍等,正在登录');
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/login.do',         //这是登录界面
+                    params: {
+                        username: this.username,
+                        password: this.password
+                    }
+                }).then(function (response) {
+                    if (response.data === '') {
+                        layer.msg('登录失败,请检查用户名和密码');
+                    } else {
+                        let time = 3;
+                        let timer = setInterval(function () {
+                            time--;
+                            if (time === 0) {
+                                clearInterval(timer);
+                                location.href = "apartment_all.html";
+                            }
+                            layer.msg('登录成功,' + time + '秒后登录');
+
+                        }, 1000)
+                    }
+
+
+                }).catch(function (err) {
+                    layer.msg('服务器错误')
+                })
+            }
+        }
+    });
+</script>

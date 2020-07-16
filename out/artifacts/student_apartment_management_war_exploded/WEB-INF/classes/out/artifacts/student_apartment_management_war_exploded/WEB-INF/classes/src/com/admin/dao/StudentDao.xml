@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.admin.dao.StudentDao">
+
+    <select id="selectAllStudent" resultType="Student">
+        select * from student where  checkInDate is null
+    </select>
+
+    <select id="selectAssiedStudent" resultType="Student">
+        SELECT	s.*,d.`buildingNum`,d.`hostelNo`,d.`layerNum` FROM dormitory d LEFT JOIN student s ON s.`sid` = d.`sid`;
+    </select>
+
+    <insert id="addStudent">
+		insert into student (sid,sname,sex,coll,major,sclass) values(#{sid},#{sname},#{sex},#{coll},#{major},#{sclass})
+	</insert>
+
+    <update id="editStudent">
+		update  dormitory set buildingNum=#{buildingNum},layerNum=#{layerNum},hostelNo=#{hostelNo} where sid = #{sid}
+	</update>
+
+
+    <select id="selectStudent" resultType="Student">
+        SELECT	s.*,d.`buildingNum`,d.`hostelNo`,d.`layerNum` FROM dormitory d LEFT JOIN student s ON s.`sid` = d.`sid` where s.sid=#{sid};
+    </select>
+
+</mapper>

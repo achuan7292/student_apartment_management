@@ -1,0 +1,192 @@
+<!-- 所有寝室界面 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>宿舍管理系统</title>
+    <!-- 引入layui -->
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/modules/layer/default/layer.css">
+    <style>
+        .body_title {
+            color: pink;
+            display: inline;
+            font-size: 20px;
+        }
+
+        .layui-icon {
+            font-size: 20px;
+            margin-right: 3px;
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">宿舍管理系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+
+            <form method="post" class="layui-form" action="">
+                <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
+                       class="layui-input layui-input-ithou">
+                <span class="layui-icon layui-icon-search layui-icon-ithou"></span>
+            </form>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="img/1003295.jpg" class="layui-nav-img">
+                    漩涡鸣人
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree " lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed  layui-this">
+                    <a class="" href="javascript:;">寝室分配</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_all.html">所有寝室</a></dd>
+                        <dd><a href="apartment_assignment.html">寝室分配</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">学生管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_student_all.html">添加学生</a></dd>
+                        <dd><a href="apartment_student_all.html">操作学生</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="apartment_student_searsh.html">信息查询</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">财产管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_assets.html">财产情况</a></dd>
+                        <dd><a href="javascript:;">财产操作</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">出入登记</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_sign_in.html">登入</a></dd>
+                        <dd><a href="apartment_sign_out.html">登出</a></dd>
+                    </dl>
+
+                </li>
+                <li class="layui-nav-item">
+                    <a href="">系统管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">参数设置</a></dd>
+                        <dd><a href="apartment_grant_power.html">权限管理</a></dd>
+                    </dl>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding:3px 5px;">
+            <span class="layui-icon layui-icon-release"></span>
+            <h3 class="body_title">未分配学生名单</h3>
+            <table id="demo" lay-filter="test"></table>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+<!-- 引入jq -->
+<script src="js/jquery.min.js"></script>
+<script src="js/layer.js"></script>
+<script src="js/layui.all.js"></script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-sm" lay-event="edit" id="my_edit">分配</a>
+</script>
+
+<script>
+    //JavaScript代码区域
+    // layui实例化
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+    // <!-- 表格部分 -->
+    layui.use('table', function () {
+        var table = layui.table;
+
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            , height: 750
+            , contentType: 'application/json'
+            , url: 'http://localhost:8080/all_student.do' //数据接口
+            , page: true //开启分页
+            , limit: 10
+            , response: [{
+                dataName: 'data'
+                , statusName: 'code'
+                , msgName: 'msg'
+                , countName: 'count'
+                , statusCode: 200
+
+            }]
+            , cols: [[ //表头
+                {field: 'sid', title: 'ID11', width: '16.7%', sort: true, fixed: 'left'}
+                , {field: 'sname', title: '学生名', width: '16.7%', align: "center"}
+                , {field: 'sex', title: '性别', width: '16.7%', sort: true, align: "center"}
+                , {field: 'coll', title: '学院', width: '16.7%', align: "center"}
+                , {field: 'major', title: '专业', width: '16.7%', align: "center"}
+                , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: '16.7%', sort: true, align: "center"}
+            ]]
+
+        });
+
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'dele') {         /*lay-event*/
+                layer.confirm('真的删除行么', function (index) {
+                    // 调用删除的方法
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.open({
+                    type: 2,
+                    title: ['添加学生', 'font-size:18px;'],
+                    anim: 3,
+                    maxmin: true,
+                    shadeClose: true, //点击遮罩关闭
+                    area: ['600px', '600px'],
+                    content: 'apartment_add_student.html'
+                }, function (value, index) {
+                    // 调用更新方法
+                    obj.update();
+                    layer.close(index);
+                });
+            }
+        });
+
+    });
+</script>
+
+</body>
+</html>
+      

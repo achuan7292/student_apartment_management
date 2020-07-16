@@ -1,0 +1,169 @@
+<!-- layui引入层 添加学生的表单-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>宿舍管理系统</title>
+    <!-- 引入layui -->
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
+    <!-- 引入弹出层组件 -->
+
+    <link rel="stylesheet" type="text/css" href="css/modules/layer/default/layer.css">
+    <link rel="stylesheet" type="text/css" href="css/modules/laydate/default/laydate.css">
+    <style type="text/css">
+        form {
+            margin: 40px auto;
+        }
+
+        .layui-input-block {
+            padding-right: 40px;
+        }
+
+        .mystyle {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+<form action="" method="post" class="layui-form" id="app">
+    <div class="layui-form-item">
+        <label class="layui-form-label">学号</label>
+        <div class="layui-input-block">
+            <input type="number" v-model="sid" name="title" readonly lay-verify="required" placeholder="请输入学号"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" v-model="sname" required readonly lay-verify="required" placeholder="请输入姓名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">学院</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" v-model="coll" required readonly lay-verify="required" placeholder="请输入姓名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">专业</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" v-model="major" required readonly lay-verify="required" placeholder="请输入姓名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">公寓</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" v-model="buildingNum" required lay-verify="required" placeholder="请输入姓名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">楼层</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" v-model="layerNum" required lay-verify="required" placeholder="请输入姓名"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">宿舍</label>
+        <div class="layui-input-block">
+            <input type="number" name="title" v-model="hostelNo" required lay-verify="required" placeholder="请输入宿舍号"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">入住日期</label>
+        <div class="layui-input-block">
+            <input type="date" name="title" required v-model="checkInDate" lay-verify="required" class="layui-input"
+                   id="test1">
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">单选框</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" value="男" title="男">
+            <input type="radio" name="sex" value="女" title="女" checked>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block mystyle">
+            <button class="layui-btn" lay-submit lay-filter="formDemo" type="button" @click="editStudent">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script src="js/jquery.min.js"></script>
+<script src="js/laydate.js"></script>
+<script src="js/layer.js"></script>
+<script src="js/layui.all.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/vue.js"></script>
+<script>
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+
+    //获取url中的参数
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+
+    let sid = getQueryVariable('sid')
+    axios.get('http://localhost:8080/selectStudent.do?sid=' + sid)
+        .then(function (res) {
+
+            console.log(res.data)
+            let app = new Vue({
+                el: '#app',
+                data: res.data,
+                method: {
+                    editStudent: function () {
+                        layer.msg('请稍等,服务器正在请求');
+                        axios({
+                            method: 'post',
+                            url: 'http://localhost:8080/editStudent.do',         //这是登录界面
+                            params: {
+                                sid: this.sid,
+                                sname: this.sname,
+                                coll: this.coll,
+                                major: this.major,
+                                buildingNum: this.buildingNum,
+                                layerNum: this.layerNum,
+                                hostelNo: this.hostelNo
+                            }
+                        }).then(function (response) {
+                            if (response.data.success) {
+                                layer.msg('修改成功');
+                            } else {
+                                layer.msg('修改失败');
+                            }
+
+                        }).catch(function (err) {
+                            layer.msg('服务器错误')
+                        })
+                    }
+                }
+            });
+
+        })
+</script>
+</body>
+</html>

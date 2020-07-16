@@ -1,0 +1,205 @@
+<!-- 所有寝室界面 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>宿舍管理系统</title>
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">宿舍管理系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+
+            <form method="post" class="layui-form" action="">
+                <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
+                       class="layui-input layui-input-ithou">
+                <span class="layui-icon layui-icon-search layui-icon-ithou"></span>
+            </form>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="img/1003295.jpg" class="layui-nav-img">
+                    漩涡鸣人
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="index.html">退出</a></li>
+
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree " lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed  ">
+                    <a class="" href="javascript:;">寝室分配</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_all.html">所有寝室</a></dd>
+                        <dd><a href="apartment_assignment.html">寝室分配</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">学生管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_student_all.html">添加学生</a></dd>
+                        <dd><a href="apartment_student_all.html">操作学生</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="apartment_student_searsh.html">信息查询</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">财产管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_assets.html">财产情况</a></dd>
+                        <dd><a href="javascript:;">财产操作</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">出入登记</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="apartment_sign_in.html">登入</a></dd>
+                        <dd><a href="apartment_sign_out.html">登出</a></dd>
+                    </dl>
+
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">系统管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">参数设置</a></dd>
+                        <dd><a href="apartment_grant_power.html">权限管理</a></dd>
+                    </dl>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body" id="app">
+        <!-- 内容主体区域 -->
+        <div style="padding:3px 5px;">
+            <!-- 搜索宿舍 -->
+            <form class="layui-form" method="" action="">
+                <div class="layui-container layui-container-ithou" style="margin-left: 0;">
+                    <div class="layui-row  layui-col-space12">
+                        <!-- 比较严谨，不写row会默认将后面元素追加，比bootstrap严谨 -->
+                        <div class="layui-col-md5">
+                            <input type="number" v-model="buildingNum" name="title" required lay-verify="required"
+                                   placeholder="请输入公寓" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-col-md5">
+                            <input type="number" v-model="layerNum" name="title" required lay-verify="required"
+                                   placeholder="请输入楼层" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-col-md2">
+                            <button type="button" @click="search" class="layui-btn layui-btn-warm">搜索宿舍</button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </form>
+            <!-- 面包屑 -->
+            <div style="margin:7px 20px;">
+        <span class="layui-breadcrumb" lay-separator="|">
+          <a href="">{{buildingNum}}号公寓</a>
+          <a href="">{{layerNum}}层</a>
+        </span>
+            </div>
+            <!-- 所有宿舍 18个 -->
+            <div class="layui-container admin-sushe" style="margin: 0 auto;">
+                <div class="layui-row  layui-col-space12">
+
+                    <div class="layui-col-md2 sushe-ithou" v-for="item in items">
+                        <img src="img/1003295.jpg" alt="">
+                        <span class="layui-icon layui-icon-home sushe-ithou-icon"></span>
+                        <span>{{item.hostelNo}}</span><br>
+                        <span class="layui-icon layui-icon-username"></span>
+                        <span v-for="it in item.students">{{it.sname}}&nbsp;&nbsp;</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域
+</div>
+</div>
+<script src="js/layui.all.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/layer.js"></script>
+<script src="js/axios.min.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function () {
+        var element = layui.element;
+
+    });
+    let app = new Vue({
+        el: '#app',
+        data: {
+            buildingNum: 1,
+            layerNum: 1,
+            items: []
+        },
+        beforeMount: function () {
+            axios({
+                method: 'post',
+                url: 'http://localhost:8080/search_dor.do',
+                params: {
+                    buildingNum: this.buildingNum,
+                    layerNum: this.layerNum,
+
+                }
+            }).then(this.getResData)
+                .catch(function (err) {
+                    layer.msg('服务器错误')
+                })
+        },
+
+        methods: {
+
+            search: function () {
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/search_dor.do',
+                    params: {
+                        buildingNum: this.buildingNum,
+                        layerNum: this.layerNum,
+
+                    }
+                }).then(this.getResData)
+                    .catch(function (err) {
+                        layer.msg('服务器错误')
+                    })
+
+            },
+            getResData(res) {
+                res = res.data
+                this.items = res
+                console.log(res.data)
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
+      

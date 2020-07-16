@@ -1,0 +1,135 @@
+<!-- layui引入层 添加学生的表单-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>宿舍管理系统</title>
+    <!-- 引入layui -->
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/index.css">
+    <!-- 引入弹出层组件 -->
+
+    <link rel="stylesheet" type="text/css" href="css/modules/layer/default/layer.css">
+
+    <style type="text/css">
+        form {
+            margin: 40px auto;
+        }
+
+        .layui-input-block {
+            padding-right: 40px;
+        }
+
+        .mystyle {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+<form action="" method="post" class="layui-form" id="app">
+    <div class="layui-form-item">
+        <label class="layui-form-label">学号</label>
+        <div class="layui-input-block">
+            <input type="number" v-model="sid" readonly name="title" required lay-verify="required" placeholder="请输入学号"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" readonly v-model="username" id="username" required lay-verify="required"
+                   placeholder="请输入姓名" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">权限</label>
+        <div class="layui-input-block">
+            <input type="password" name="title" v-model="password" id="password" required lay-verify="required"
+                   placeholder="请输入权限密码" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block mystyle">
+            <button class="layui-btn" type="button" onclick="sub()" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script src="js/jquery.min.js"></script>
+<script src="js/laydate.js"></script>
+<script src="js/layer.js"></script>
+<script src="js/layui.all.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/vue.js"></script>
+<script>
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+
+    //获取url中的参数
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+
+    var sid = getQueryVariable('sid')
+    var apps = axios.get('http://localhost:8080/selectStudent.do?sid=' + sid)
+        .then(function (res) {
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    sid: res.data.sid,
+                    username: res.data.sname,
+                    password: ''
+                },
+                method: {
+                    getResData(res) {
+                        res = res.data
+                        this.username = res.sname
+                        this.sid = res.sid
+                        console.log(res.data)
+                    }
+                }
+            });
+        })
+
+    function sub() {
+        console.log(apps)
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/grant.do',
+            params: {
+                username: $('#username').val(),
+                password: $('#password').val()
+
+            }
+        }).then(function (res) {
+            console.log(res.data.success)
+            if (res.data.success) {
+                layer.msg('授权成功')
+            } else {
+                layer.msg('授权失败')
+            }
+        })
+            .catch(function (err) {
+                layer.msg('服务器错误')
+            })
+    }
+
+
+</script>
+</body>
+</html>
